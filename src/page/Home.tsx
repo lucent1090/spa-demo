@@ -11,7 +11,9 @@ function Home() {
   });
   const [newTask, setNewTask] = useState("");
 
-  const handleTaskBodyChange = (e) => setNewTask(e.target.value);
+  const handleTaskBodyChange: React.ChangeEventHandler<HTMLInputElement> = (
+    e
+  ) => setNewTask(e.target.value);
   const handleAddNewTask = () => {
     setNewTask("");
 
@@ -27,7 +29,7 @@ function Home() {
     const newAdded = added.filter((added) => added.id !== id);
 
     if (newAdded.length === added.length) {
-      // Deleted one comes from the data source
+      // The deleted task comes from the data source
       setActions({
         added: newAdded,
         deleted: deleted.concat([id]),

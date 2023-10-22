@@ -40,9 +40,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider
-      router={router}
-      fallbackElement={<p>Performing initial data load</p>}
-    />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );

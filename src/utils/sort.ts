@@ -1,4 +1,6 @@
-function sortByName(a, b) {
+import type { UserData } from "../type/users";
+
+function sortByName(a: UserData, b: UserData): number {
   const name1 = `${a.firstName}${a.lastName}`.toUpperCase();
   const name2 = `${b.firstName}${b.lastName}`.toUpperCase();
   if (name1 < name2) {
@@ -11,19 +13,22 @@ function sortByName(a, b) {
   return 0;
 }
 
-function sortByAge(a, b) {
+function sortByAge(a: UserData, b: UserData): number {
   const age1 = a.age;
   const age2 = b.age;
 
   return age1 - age2;
 }
 
-function dontSort(a, b) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function dontSort(_a: UserData, _b: UserData): number {
   return 0;
 }
 
-export default {
+const sort: Record<string, (a: UserData, b: UserData) => number> = {
   name: sortByName,
   age: sortByAge,
   dontSort,
 };
+
+export default sort;

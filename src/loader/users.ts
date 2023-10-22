@@ -1,6 +1,10 @@
 import type { UserLoaderData, UserData } from "../type/users";
 
-export async function loader({ request }): Promise<UserLoaderData> {
+export async function loader({
+  request,
+}: {
+  request: Request;
+}): Promise<UserLoaderData> {
   const page = parseInt(new URL(request.url).searchParams.get("page") || "1");
   const search = new URL(request.url).searchParams.get("search");
 

@@ -11,18 +11,25 @@ function Users() {
   const search = searchParams.get("search") || "";
   const page = parseInt(searchParams.get("page") || "1");
 
-  const [sortBy, setSortBy] = useState(undefined);
-  const sortByFunc = sort[sortBy ? sortBy : "dontSort"];
+  const [sortBy, setSortBy] = useState("");
+  const sortByFunc = sort[sortBy ?? "dontSort"];
 
-  const handleSearchChange = (e) => setSearchParams({ search: e.target.value });
-  const handleSortByChange = (e) => setSortBy(e.target.value);
+  const handleSearchChange: React.ChangeEventHandler<HTMLInputElement> = (e) =>
+    setSearchParams({ search: e.target.value });
+  const handleSortByChange: React.ChangeEventHandler<HTMLSelectElement> = (e) =>
+    setSortBy(e.target.value);
   const handlePrevPage = () => setSearchParams({ page: `${page - 1}` });
   const handleNextPage = () => setSearchParams({ page: `${page + 1}` });
 
   return (
     <>
       <label htmlFor="search">Search:</label>
-      <input type="text" value={search} onChange={handleSearchChange} />
+      <input
+        id="search"
+        type="text"
+        value={search}
+        onChange={handleSearchChange}
+      />
 
       <label htmlFor="sortBy">Sort:</label>
       <select id="sortBy" onChange={handleSortByChange}>

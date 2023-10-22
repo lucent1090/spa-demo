@@ -1,9 +1,21 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useFetchers, useNavigation } from "react-router-dom";
 
 function Layout() {
+  const navigation = useNavigation();
+  const fetchers = useFetchers();
+  const fetcherInProgress = fetchers.some((f) =>
+    ["loading", "submitting"].includes(f.state)
+  );
+
+  const isLoading = navigation.state !== "idle" || fetcherInProgress;
+
   return (
     <>
-      <div>{/** TODO: Add global loader */}</div>
+      {isLoading && (
+        <div>
+          <p>Loading...</p>
+        </div>
+      )}
 
       <Outlet />
     </>
