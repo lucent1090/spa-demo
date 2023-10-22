@@ -9,6 +9,7 @@ import Users from "./page/Users";
 import UserDetail from "./page/UserDetail";
 import { loader as homeLoader } from "./loader/home";
 import { loader as usersLoader } from "./loader/users";
+import { loader as userDetailLoader } from "./loader/userDetail";
 
 import "./index.css";
 
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
       {
         path: "users/:id",
         element: <UserDetail />,
+        loader: userDetailLoader,
       },
     ],
   },

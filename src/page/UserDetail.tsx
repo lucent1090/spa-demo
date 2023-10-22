@@ -1,8 +1,20 @@
-import { useParams } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import type { UserData } from "../type/users";
 
 function UserDetail() {
-  const { id } = useParams();
-  return <div>This is user detail: {id}</div>;
+  const { firstName, lastName, email, age, address, profileImage } =
+    useLoaderData() as UserData;
+
+  return (
+    <>
+      <Link to="/users">Back</Link>
+      <img src={profileImage} alt="profile image" />
+      <div>{`${firstName} ${lastName}`}</div>
+      <div>{`${email}`}</div>
+      <div>{`${age} years old`}</div>
+      <div>{`${address}`}</div>
+    </>
+  );
 }
 
 export default UserDetail;

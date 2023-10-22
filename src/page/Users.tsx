@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useLoaderData, useSearchParams } from "react-router-dom";
+import { Link, useLoaderData, useSearchParams } from "react-router-dom";
 
-import { UserLoaderData } from "../loader/users";
+import type { UserLoaderData } from "../type/users";
 import sort from "../utils/sort";
 
 function Users() {
@@ -36,6 +36,7 @@ function Users() {
             <th>Name</th>
             <th>Email</th>
             <th>Age</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -46,6 +47,9 @@ function Users() {
               </td>
               <td>{user.email}</td>
               <td>{user.age}</td>
+              <td>
+                <Link to={`${user.id}`}>Detail</Link>
+              </td>
             </tr>
           ))}
         </tbody>

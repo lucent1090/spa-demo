@@ -1,16 +1,4 @@
-interface UserData {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  age: number;
-  address: string;
-  profileImage: string;
-}
-
-export interface UserLoaderData {
-  data: UserData[];
-}
+import type { UserLoaderData, UserData } from "../type/users";
 
 export async function loader({ request }): Promise<UserLoaderData> {
   const page = parseInt(new URL(request.url).searchParams.get("page") || "1");
@@ -28,9 +16,6 @@ export async function loader({ request }): Promise<UserLoaderData> {
   const totalPage = Math.round(users.length / 10);
   const offset =
     page < 1 ? 0 : page > totalPage ? (totalPage - 1) * 10 : (page - 1) * 10;
-
-  console.log("page", page);
-  console.log("offset", offset);
 
   const data = users
     .filter((user) =>
