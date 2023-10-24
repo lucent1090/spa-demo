@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import styled from "@emotion/styled";
 import type { Task, TaskLoaderData } from "../type/tasks";
+
+const Test = styled("div")`
+  color: ${({ theme }) => theme.colors.primary};
+  width: 100%;
+`;
 
 function Home() {
   const { data } = useLoaderData() as TaskLoaderData;
@@ -45,7 +51,7 @@ function Home() {
   return (
     <>
       <h1>Tasks</h1>
-
+      <Test>Test123</Test>
       <input type="text" value={newTask} onChange={handleTaskBodyChange} />
       <button onClick={handleAddNewTask}>Add</button>
 
