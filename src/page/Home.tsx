@@ -18,6 +18,13 @@ const Button = styled.button`
 function Home() {
   const { data } = useLoaderData() as TaskLoaderData;
 
+  /**
+   * Since JSONPlaceHolder don't support actual POST and DELETE,
+   * we decide to mock the result by keeping adding and deleting changes.
+   *
+   * Function handleAddNewTask and handleDelete should call a real
+   * Restful API if available.
+   */
   const [actions, setActions] = useState<{ added: Task[]; deleted: number[] }>({
     added: [],
     deleted: [],
