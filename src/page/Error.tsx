@@ -1,9 +1,20 @@
+import styled from "@emotion/styled";
+
+const Content = styled.div`
+  width: 60dvw;
+  margin: 5rem auto;
+
+  @media screen and (max-width: 820px) {
+    width: 80dvw;
+  }
+`;
+
 function Error() {
   return (
-    <div>
+    <Content>
       <h1>Oops!</h1>
       <p>Sorry, an unexpected error has occurred.</p>
-    </div>
+    </Content>
   );
 }
 

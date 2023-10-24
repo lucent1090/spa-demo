@@ -1,11 +1,18 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import styled from "@emotion/styled";
+
 import type { Task, TaskLoaderData } from "../type/tasks";
 
-const Test = styled("div")`
-  color: ${({ theme }) => theme.colors.primary};
-  width: 100%;
+const TaskArea = styled.div`
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 4rem auto;
+  row-gap: 0.5rem;
+`;
+
+const Button = styled.button`
+  justify-self: center;
 `;
 
 function Home() {
@@ -21,6 +28,10 @@ function Home() {
     e
   ) => setNewTask(e.target.value);
   const handleAddNewTask = () => {
+    if (newTask === "") {
+      return;
+    }
+
     setNewTask("");
 
     const { added, deleted } = actions;
@@ -51,19 +62,19 @@ function Home() {
   return (
     <>
       <h1>Tasks</h1>
-      <Test>Test123</Test>
-      <input type="text" value={newTask} onChange={handleTaskBodyChange} />
-      <button onClick={handleAddNewTask}>Add</button>
-
-      {data
-        .filter((task) => !actions.deleted.includes(task.id))
-        .concat(actions.added)
-        .map((task) => (
-          <div key={task.id}>
-            {task.body}
-            <button onClick={handleDelete(task.id)}>Delete</button>
-          </div>
-        ))}
+      <TaskArea>
+        <input type="text" value={newTask} onChange={handleTaskBodyChange} />
+        <Button onClick={handleAddNewTask}>Add</Button>
+        {data
+          .filter((task) => !actions.deleted.includes(task.id))
+          .concat(actions.added)
+          .map((task) => (
+            <Fragment key={task.id}>
+              {task.body}
+              <Button onClick={handleDelete(task.id)}>Delete</Button>
+            </Fragment>
+          ))}
+      </TaskArea>
     </>
   );
 }

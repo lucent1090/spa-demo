@@ -1,8 +1,29 @@
 import { useState } from "react";
 import { Link, useLoaderData, useSearchParams } from "react-router-dom";
+import styled from "@emotion/styled";
 
 import type { UserLoaderData } from "../type/users";
 import sort from "../utils/sort";
+
+const ActionArea = styled.div`
+  margin-bottom: 1rem;
+`;
+
+const Input = styled.input`
+  width: 40%;
+  margin-right: 2rem;
+`;
+
+const Select = styled.select`
+  padding: 0.3rem 0.3rem;
+  height: 2rem;
+`;
+
+const Pagination = styled.div`
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+`;
 
 function Users() {
   const { data } = useLoaderData() as UserLoaderData;
@@ -23,19 +44,23 @@ function Users() {
 
   return (
     <>
-      <label htmlFor="search">Search:</label>
-      <input
-        id="search"
-        type="text"
-        value={search}
-        onChange={handleSearchChange}
-      />
+      <h1>User List</h1>
 
-      <label htmlFor="sortBy">Sort:</label>
-      <select id="sortBy" onChange={handleSortByChange}>
-        <option value="name">Name</option>
-        <option value="age">Age</option>
-      </select>
+      <ActionArea>
+        <label htmlFor="search">Search</label>
+        <Input
+          id="search"
+          type="text"
+          value={search}
+          onChange={handleSearchChange}
+        />
+
+        <label htmlFor="sortBy">Sort</label>
+        <Select id="sortBy" onChange={handleSortByChange}>
+          <option value="name">Name</option>
+          <option value="age">Age</option>
+        </Select>
+      </ActionArea>
 
       <table>
         <thead>
@@ -62,9 +87,11 @@ function Users() {
         </tbody>
       </table>
 
-      <button onClick={handlePrevPage}>Prev Page</button>
-      {page}
-      <button onClick={handleNextPage}>Next Page</button>
+      <Pagination>
+        <button onClick={handlePrevPage}>Prev Page</button>
+        {page}
+        <button onClick={handleNextPage}>Next Page</button>
+      </Pagination>
     </>
   );
 }
