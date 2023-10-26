@@ -5,6 +5,12 @@ export async function loader(): Promise<TaskLoaderData> {
     "https://my-json-server.typicode.com/lucent1090/spa-demo-db/tasks"
   );
   const tasks = (await response.json()) as Task[];
+  if (!tasks) {
+    // show page with empty list
+    return {
+      data: [],
+    };
+  }
 
   return { data: tasks };
 }

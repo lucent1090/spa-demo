@@ -44,13 +44,19 @@ const Address = styled.div`
 `;
 
 function UserDetail() {
-  const { firstName, lastName, email, age, address, profileImage } =
-    useLoaderData() as UserData;
+  const {
+    firstName = "",
+    lastName = "",
+    email = "",
+    age = "",
+    address = "",
+    profileImage = "",
+  } = useLoaderData() as UserData;
 
   return (
     <>
       <ActionArea>
-        <Link to="/users">Back</Link>
+        <Link to="/users">Back to user list</Link>
       </ActionArea>
 
       <DetailArea>
