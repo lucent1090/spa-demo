@@ -30,7 +30,7 @@ function Users() {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get("search") || "";
-  const page = parseInt(searchParams.get("page") || "1");
+  const page = parseInt(searchParams.get("page") || "1") || 1;
 
   const [sortBy, setSortBy] = useState("");
   const sortByFunc = sort[sortBy ?? "dontSort"];

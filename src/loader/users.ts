@@ -6,7 +6,8 @@ export async function loader({
 }: {
   request: Request;
 }): Promise<UserLoaderData> {
-  const page = parseInt(new URL(request.url).searchParams.get("page") || "1");
+  const page =
+    parseInt(new URL(request.url).searchParams.get("page") || "1") || 1;
   const search = new URL(request.url).searchParams.get("search");
 
   const hasSearch = !!search;
