@@ -80,6 +80,6 @@ When taking a look at lighthouse , it indicates that LCP could be improved. The 
 
 ![detail](./demo/lcp-detail.png)
 
-From the performance break down, it's clear that there's a heavy task working on and perform recalculate of layout. This could be a place to dive in and check for the improvement opportunity.
+From the performance break down, it's clear that there's a heavy task working on and perform recalculate of layout. This could be a place to dive in and check for the improvement opportunity. For example, moving to SSR rendering or using server component.
 
 ![layout](./demo/layout-calc.png)
